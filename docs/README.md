@@ -28,6 +28,7 @@ Each file ends with **Open questions**: things that need a phone call, a site vi
 | 6 | [06-staffing.md](06-staffing.md) | Roles, staff-to-dog ratios, wages, schedules, training, hiring | Operations, HR |
 | 7 | [07-marketing.md](07-marketing.md) | Positioning, pricing packages, launch plan, channels, retention | Marketing |
 | 8 | [08-risks.md](08-risks.md) | Main risks, ranked, with how to reduce each one | All agents |
+| — | [progress-log.md](progress-log.md) | **What has been built and decided so far; open threads** | Anyone resuming the work |
 | — | [how-to-talk-to-your-experts.md](how-to-talk-to-your-experts.md) | **Example prompts: one expert, orchestrated multi-expert questions, whole-team reviews** | Anyone using the team |
 | — | [agent-brains.md](agent-brains.md) | **Each agent's model (brain), persona and knowledge folder, with reasons** | Whoever maintains the agents |
 | — | [expert-roster.md](expert-roster.md) | **The 19 expert agents, their one-line jobs, and the 30 skills they share** | Whoever builds the agents |
