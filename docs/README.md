@@ -28,6 +28,7 @@ Each file ends with **Open questions**: things that need a phone call, a site vi
 | 6 | [06-staffing.md](06-staffing.md) | Roles, staff-to-dog ratios, wages, schedules, training, hiring | Operations, HR |
 | 7 | [07-marketing.md](07-marketing.md) | Positioning, pricing packages, launch plan, channels, retention | Marketing |
 | 8 | [08-risks.md](08-risks.md) | Main risks, ranked, with how to reduce each one | All agents |
+| — | [expert-roster.md](expert-roster.md) | **The 19 expert agents, their one-line jobs, and the 30 skills they share** | Whoever builds the agents |
 
 ## Summary of findings
 
@@ -40,6 +41,8 @@ Each file ends with **Open questions**: things that need a phone call, a site vi
 7. **The biggest risks** are dog fights and injuries (and the liability and reputation damage that follow), contagious disease (Miami-Dade had a canine pneumovirus outbreak in 2022 and the county advised owners to avoid daycares), hurricanes and extreme heat, being unable to find a property zoned for the use, and labour cost and staff turnover.
 
 ## Suggested agent roster (for the next phase)
+
+> Superseded by the fuller roster in [expert-roster.md](expert-roster.md). The short list below is kept for reference.
 
 - **Strategy / CEO agent**: decides go/no-go, location and positioning (reads everything).
 - **Finance agent**: builds the startup budget, P&L and break-even model (01, 04, 06).
