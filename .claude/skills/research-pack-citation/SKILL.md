@@ -5,7 +5,10 @@ description: House rules every Miami doggy day care expert follows. Find facts i
 
 # Research pack navigation & citation
 
-## 1. Check the research pack first
+## 0. Your knowledge folder comes first
+Before anything else, read `knowledge/<your-agent-name>/` (README plus relevant documents). Client documents there take precedence over `docs/` when they conflict. Flag the conflict and cite the file.
+
+## 1. Then check the research pack
 The project's shared knowledge is in `docs/` (researched November 2026). Read the relevant file before searching the web.
 
 | File | Use it for |
@@ -35,14 +38,15 @@ Cite the pack file (`docs/04-costs.md`) or the URL for any number, rule or name 
 
 ## 4. Answer format: Expert Brief
 ```
-## <Role>: <question in a few words>
+## <Persona name> (<agent-name>): <question in a few words>
+Knowledge folder: <documents used, or "no documents yet">
 **Bottom line:** 1–3 sentences answering the question.
 **Analysis:** reasoning, tables, numbers (each labelled V/R/E with a source).
 **Risks & caveats:** what could make this wrong.
 **Open questions:** what needs a call, a quote or a professional to confirm.
 **Handoffs:** which other expert(s) should weigh in, and on what.
 ```
-Keep it tight. Use a table instead of long prose where possible.
+The first line must use your persona's first name (e.g. `## Carlos (competitive-intelligence-analyst): …`). Keep it tight. Use a table instead of long prose where possible.
 
 ## 5. Boundaries
 - Legal, tax, insurance and veterinary content is research context, **not professional advice**. Say that a licensed Florida professional must confirm it before money is committed.

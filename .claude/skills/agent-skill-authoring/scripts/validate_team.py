@@ -65,7 +65,7 @@ for d in sorted(p for p in SKILLS.iterdir() if p.is_dir()):
         errors.append(f"{f}: agent '{fm['agent']}' not found")
     skills[d.name] = fm
 
-agents, used = {}, {}
+agents, used, personas = {}, {}, {}
 for f in sorted(AGENTS.glob("*.md")):
     fm, body = frontmatter(f)
     name = fm.get("name")
@@ -100,9 +100,24 @@ for f in sorted(AGENTS.glob("*.md")):
             warns.append(f"{f}: expert should have disallowedTools: Agent")
     if len(body.strip()) < 200:
         warns.append(f"{f}: system prompt looks very short")
+    model = str(fm.get("model", ""))
+    if not (model in {"opus", "sonnet", "haiku", "fable", "inherit"} or model.startswith("claude-")):
+        errors.append(f"{f}: model '{model}' missing or invalid")
+    if not (ROOT / "knowledge" / name / "README.md").exists():
+        errors.append(f"{f}: missing knowledge/{name}/README.md")
+    if f"knowledge/{name}/" not in body:
+        warns.append(f"{f}: system prompt does not tell the agent to read knowledge/{name}/")
+    m = re.search(r"Your name is \*\*([^*]+)\*\*", body)
+    if not m:
+        warns.append(f"{f}: no Persona name")
+    else:
+        personas.setdefault(m.group(1), []).append(name)
     agents[name] = fm
 
 n = len(agents)
+for p, owners in personas.items():
+    if len(owners) > 1:
+        errors.append(f"persona name '{p}' used by {owners}")
 if not 10 <= n <= 50:
     errors.append(f"team has {n} agents; expected 10-50")
 for s, fm in skills.items():
