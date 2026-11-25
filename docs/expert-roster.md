@@ -2,8 +2,9 @@
 
 This file defines the expert agents that will advise the consultant on opening a doggy day care in Miami, Florida, and the skills those agents need. Each role is tied to the topic files in this folder (see [README.md](README.md)), so every agent knows which research it should rely on.
 
-- **19 roles** across strategy, business, finance, real estate, technical, legal and regulatory, risk, operations, people and marketing.
-- **30 skills**. Many are shared between agents, so each skill is built once and reused.
+- **19 expert roles** across strategy, business, finance, real estate, technical, legal and regulatory, risk, operations, people and marketing, plus **2 team agents** (orchestrator and meta). That makes **21 subagents** in total.
+- **30 domain skills**, plus **2 team skills** and **2 entry-point skills**, for **34 skills** in total. Many skills are shared between agents, so each is built once and reused.
+- **Implemented** as Claude Code project subagents in `.claude/agents/` and skills in `.claude/skills/` (see Part 4 and `CLAUDE.md`).
 - IDs (`R01`, `S01`) are for wiring the agents and skills together.
 
 ## Why these roles
@@ -109,3 +110,82 @@ The same mapping as Part 2, viewed by agent. Use it when configuring each agent.
   - R14 and R15 (dog safety and health) feed R13 (SOPs), which feeds R16 (staffing and training) and R12 (risk).
   - R02, R03 and R04 (market) feed R17 and R18 (marketing), which feed R05 (revenue ramp).
 - **Possible merges for a smaller team:** R02 + R04, R17 + R18, R12 + R15 (risk + health), R06 + R07.
+
+## Part 4: Implementation (Claude Code)
+
+### Team agents (added beyond the roster)
+
+| ID | Agent file | Job | Preloaded skills |
+|---|---|---|---|
+| R20 | `.claude/agents/expert-orchestrator.md` | Takes any question, picks the experts, has them work together (parallel or in sequence), cross-checks them, and returns one combined answer. | S31 expert-team-orchestration, S01, S30 |
+| R21 | `.claude/agents/team-builder.md` | Meta agent: creates new agents and skills, improves existing ones, keeps everything in sync and validated. | S32 agent-skill-authoring, S01, S31 |
+
+### Team and entry-point skills (added beyond the roster)
+
+| ID | Skill directory | Purpose | Used by |
+|---|---|---|---|
+| S31 | `.claude/skills/expert-team-orchestration/` | Routing table, briefing, parallel/sequential coordination, merge format | R20, R21 |
+| S32 | `.claude/skills/agent-skill-authoring/` | Official file formats, team conventions, procedures, `scripts/validate_team.py` | R21 |
+| S33 | `.claude/skills/consult-experts/` | `/consult-experts [question]` runs the question through R20 (forked, waits for the answer) | User entry point |
+| S34 | `.claude/skills/improve-team/` | `/improve-team [request]` runs the request through R21 | User entry point |
+
+### Roster ID → agent file
+
+| ID | Agent file |
+|---|---|
+| R01 | `.claude/agents/engagement-lead.md` |
+| R02 | `.claude/agents/market-research-analyst.md` |
+| R03 | `.claude/agents/customer-pricing-strategist.md` |
+| R04 | `.claude/agents/competitive-intelligence-analyst.md` |
+| R05 | `.claude/agents/financial-modeler.md` |
+| R06 | `.claude/agents/funding-franchise-advisor.md` |
+| R07 | `.claude/agents/tax-accounting-advisor.md` |
+| R08 | `.claude/agents/real-estate-site-advisor.md` |
+| R09 | `.claude/agents/facility-buildout-advisor.md` |
+| R10 | `.claude/agents/zoning-permitting-specialist.md` |
+| R11 | `.claude/agents/business-attorney.md` |
+| R12 | `.claude/agents/risk-insurance-manager.md` |
+| R13 | `.claude/agents/operations-manager.md` |
+| R14 | `.claude/agents/canine-behavior-specialist.md` |
+| R15 | `.claude/agents/veterinary-biosecurity-advisor.md` |
+| R16 | `.claude/agents/hr-workforce-advisor.md` |
+| R17 | `.claude/agents/brand-marketing-strategist.md` |
+| R18 | `.claude/agents/digital-growth-marketer.md` |
+| R19 | `.claude/agents/technology-systems-advisor.md` |
+
+### Skill ID → skill directory
+
+| ID | Skill directory |
+|---|---|
+| S01 | `.claude/skills/research-pack-citation/SKILL.md` |
+| S02 | `.claude/skills/web-research-verification/SKILL.md` |
+| S03 | `.claude/skills/florida-miami-regulatory-lookup/SKILL.md` |
+| S04 | `.claude/skills/financial-modeling/SKILL.md` |
+| S05 | `.claude/skills/unit-economics-kpis/SKILL.md` |
+| S06 | `.claude/skills/pricing-package-design/SKILL.md` |
+| S07 | `.claude/skills/demographic-catchment-analysis/SKILL.md` |
+| S08 | `.claude/skills/competitor-benchmarking/SKILL.md` |
+| S09 | `.claude/skills/survey-demand-validation/SKILL.md` |
+| S10 | `.claude/skills/commercial-lease-analysis/SKILL.md` |
+| S11 | `.claude/skills/site-evaluation-scorecard/SKILL.md` |
+| S12 | `.claude/skills/buildout-spec-cost-estimation/SKILL.md` |
+| S13 | `.claude/skills/permit-pathway-mapping/SKILL.md` |
+| S14 | `.claude/skills/contract-waiver-review/SKILL.md` |
+| S15 | `.claude/skills/insurance-coverage-analysis/SKILL.md` |
+| S16 | `.claude/skills/risk-register/SKILL.md` |
+| S17 | `.claude/skills/emergency-continuity-planning/SKILL.md` |
+| S18 | `.claude/skills/sop-authoring/SKILL.md` |
+| S19 | `.claude/skills/temperament-playgroup-management/SKILL.md` |
+| S20 | `.claude/skills/disease-prevention-vaccine-policy/SKILL.md` |
+| S21 | `.claude/skills/staffing-scheduling-model/SKILL.md` |
+| S22 | `.claude/skills/hiring-training-retention/SKILL.md` |
+| S23 | `.claude/skills/employment-wage-compliance/SKILL.md` |
+| S24 | `.claude/skills/brand-positioning-bilingual/SKILL.md` |
+| S25 | `.claude/skills/digital-marketing-execution/SKILL.md` |
+| S26 | `.claude/skills/partnership-outreach/SKILL.md` |
+| S27 | `.claude/skills/funding-lender-package/SKILL.md` |
+| S28 | `.claude/skills/tax-setup-bookkeeping/SKILL.md` |
+| S29 | `.claude/skills/pet-tech-stack-selection/SKILL.md` |
+| S30 | `.claude/skills/decision-synthesis-memo/SKILL.md` |
+
+Each roster agent preloads exactly the skills listed for it in Part 3, through the `skills:` field in its frontmatter. Run `python3 .claude/skills/agent-skill-authoring/scripts/validate_team.py` to check the wiring.
