@@ -14,6 +14,8 @@ deliverables/<agent>/     Where agents write files when asked (created on demand
 
 ## How to use the team
 
+Example prompts are in [`docs/how-to-talk-to-your-experts.md`](docs/how-to-talk-to-your-experts.md).
+
 | You want… | Do this |
 |---|---|
 | A combined answer from several experts | `/consult-experts Should we open in Wynwood or Doral?`, or ask: "Use the expert-orchestrator to …" |
